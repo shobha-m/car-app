@@ -1,0 +1,112 @@
+<br/>
+<!-- Page Content -->
+<div class="container">
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Cars Page
+            </h1>
+            <ol class="breadcrumb">
+
+                <li class="active">
+                    Home Page
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-md-3">
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Color
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="navbar-default sidebar" role="navigation">
+                        <div class="sidebar-nav navbar-collapse">
+                            <ul class="nav" *ngFor="let color of catgArray">
+                                <li class="active">
+                                    <input type="checkbox" name="color" [(ngModel)]="color.checked" (change)="updateFilter(color)" /> {{color.status}}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Type
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="navbar-default sidebar" role="navigation">
+                        <div class="sidebar-nav navbar-collapse">
+                            <ul class="nav" *ngFor="let type of typeArray">
+                                <li class="active">
+                                    <input type="checkbox" name="type" [(ngModel)]="type.checked" (change)="updateFilter(type)" /> {{type.status}}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Price
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    Select the minimal price
+                    <p>
+                        100
+
+                        <input type="range" min="100" max="100000" [(ngModel)]="sliderValue" /> 100000
+                    </p>
+                    Price Selected: {{sliderValue}}
+                </div>
+                <!-- /.panel-body -->
+            </div>
+        </div>
+
+
+
+        <div class="col-md-8">
+
+
+            <div class="row">
+
+                <div class="col-sm-4 col-lg-4 col-md-4" *ngFor="let car of filtercars | PricePipe:sliderValue">
+                    <div class="thumbnail">
+                        <img src="http://placehold.it/320x150" alt="">
+                        <div class="caption">
+                            <h4 class="pull-right">${{car.price}}</h4>
+                            Year : {{car.yearOfConstruction}}
+                            <h4><a href="#">{{car.type}}</a>
+                            </h4>
+                            <h3>{{car.color}}</h3>
+                            <p>{{car.notes}} </p>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- /.container -->
